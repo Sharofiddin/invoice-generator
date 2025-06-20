@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Invoice</title>
+<style>
+    body { font-family: sans-serif; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px; border: 1px solid #ddd; }
+</style>
+</head>
+<body>
+  {#if invoice.logoBase64}
+  <img src="{invoice.logoBase64}" alt="Logo" style="width:150px;"/>
+  {/if}
+  <h1>{invoice.sender.name}</h1>
+  <p>{invoice.sender.address}</p>
+  <hr />
+  <h3>Bill To:</h3>
+  <p>{invoice.recipient.name}</p>
+  <p>{invoice.recipient.address}</p>
+  <table>
+    <tr>
+      <th>Description</th>
+      <th>Qty</th>
+      <th>Price</th>
+    </tr>
+    {#for item in invoice.items}
+    <tr>
+        <td>{item.description}</td>
+        <td>{item.quantity}</td>
+        <td>{item.price}</td>
+    </tr>
+      {/for}
+  </table>  
+</body>
+</html>
